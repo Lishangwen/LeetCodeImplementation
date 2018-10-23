@@ -39,3 +39,5 @@ Release
 *.vbproj.user
 ipch
 *sd
+*.opendb
+.vs/LeetCodeImplemention/v15/Browse.VC.opendb
