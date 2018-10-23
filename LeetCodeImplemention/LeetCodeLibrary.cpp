@@ -2,6 +2,7 @@
 #include "LeetCodeLibrary.h"
 
 
+
 LeetCodeLibrary::LeetCodeLibrary()
 {
 }
@@ -13,13 +14,14 @@ LeetCodeLibrary::~LeetCodeLibrary()
 
 vector<int> LeetCodeLibrary::twoSum(vector<int>& nums, int target)
 {
-	for (int i = 0; i < nums.size()-1; i++)
+	unordered_map<int, int> hashmap;
+	for (int i = 0; i < nums.size(); i++)
 	{
-		for (int j = i + 1; j < nums.size(); j++)
+		if (hashmap.find(target - nums[i]) != hashmap.end())
 		{
-			if (nums[i] + nums[j] == target)
-				return { i,j };
+			return { hashmap[target-nums[i]],i};
 		}
+		hashmap[nums[i]] = i;
 	}
 	return { 0,0 };
 }
