@@ -14,7 +14,6 @@ LeetCodeLibrary::~LeetCodeLibrary()
 
 vector<int> LeetCodeLibrary::twoSum(vector<int>& nums, int target)
 {
-
 	unordered_map<int, int> hashmap;
 	for (int i = 0; i < nums.size(); i++)
 	{
