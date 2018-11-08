@@ -2,5 +2,8 @@
 #include <iostream>
 #include <Vector>
 #include "LeetCodeLibrary.h"
-void TwoSumTest(LeetCodeLibrary leetCodeLib);
-void AddTwoNumbersTest(LeetCodeLibrary leetCodeLib);
+#include "string"
+void TwoSumTest(LeetCodeLibrary);
+void AddTwoNumbersTest(LeetCodeLibrary);
+void findMedianSortedArraysTest(LeetCodeLibrary);
+void longestPalindromeTest(LeetCodeLibrary);

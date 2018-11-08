@@ -101,3 +101,26 @@ double LeetCodeLibrary::findMedianSortedArrays(vector<int>& nums1, vector<int>& 
 	}
 	return (midIndexNum == 2) ? (totalNums[midIndex1] + totalNums[midIndex2]) / 2.0 : totalNums[midIndex1];
 }
+string LeetCodeLibrary::longestPalindrome(string s)
+{
+	string result = "";
+	if (s.size() <= 1) return s;
+	for (int i = 0; i < s.size(); i++)
+	{
+		for (int j = i; j < s.size(); j++)
+		{
+			for (int offset = 0; offset <= (j - i) / 2; offset++)
+			{
+				if (s.at(i + offset) == s.at(j - offset))
+				{
+					if ((offset == (j - i) / 2)&&(j-i+1)>=result.size())
+					{
+						result = s.substr(i, j - i + 1);
+					}
+				}
+				else break;
+			}
+		}
+	}
+	return result;
+}

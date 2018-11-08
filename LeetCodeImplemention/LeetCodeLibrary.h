@@ -29,5 +29,8 @@ public:
 
 	// 4.Median of Two Sorted Arrays
 	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2);
+
+	// 5.Longest Palindromic Substring
+	string longestPalindrome(string s);
 };
 
