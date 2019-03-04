@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "LeetCodeLibrary.h"
-
-
-
+#include <algorithm>
+using namespace std;
 
 LeetCodeLibrary::LeetCodeLibrary()
 {
@@ -102,12 +101,13 @@ double LeetCodeLibrary::findMedianSortedArrays(vector<int>& nums1, vector<int>& 
 	return (midIndexNum == 2) ? (totalNums[midIndex1] + totalNums[midIndex2]) / 2.0 : totalNums[midIndex1];
 }
 string LeetCodeLibrary::longestPalindrome(string s)
-{
+{/*
 	string result = "";
 	if (s.size() <= 1) return s;
 	for (int i = 0; i < s.size(); i++)
 	{
-		for (int j = i; j < s.size(); j++)
+		bool isFind = false;
+		for (int j = s.size()-1; j >= 0&&!isFind; j--)
 		{
 			for (int offset = 0; offset <= (j - i) / 2; offset++)
 			{
@@ -116,6 +116,7 @@ string LeetCodeLibrary::longestPalindrome(string s)
 					if ((offset == (j - i) / 2)&&(j-i+1)>=result.size())
 					{
 						result = s.substr(i, j - i + 1);
+						isFind = true;
 					}
 				}
 				else break;
@@ -123,4 +124,46 @@ string LeetCodeLibrary::longestPalindrome(string s)
 		}
 	}
 	return result;
+	*/
+	if (s.empty()) return "";
+	if (s.size() == 1) return s;
+	int min_start = 0, max_len = 1;
+	for (int i = 0; i < s.size();) 
+	{
+		if (s.size() - i <= max_len / 2) break;
+		int j = i, k = i;
+		while (k < s.size() - 1 && s[k + 1] == s[k]) ++k; // Skip duplicate characters.
+		i = k + 1;
+		while (k < s.size() - 1 && j > 0 && s[k + 1] == s[j - 1])
+		{ 
+			++k;
+			--j; 
+		} // Expand.
+		int new_len = k - j + 1;
+		if (new_len > max_len)
+		{ 
+			min_start = j; 
+			max_len = new_len; 
+		}
+	}
+	return s.substr(min_start, max_len);
+}
+
+string LeetCodeLibrary::convert(string s, int numRows)
+{
+	if (numRows == 1) return s;
+
+	vector<string> rows(min(numRows, int(s.size())));
+	int curRow = 0;
+	bool goingDown = false;
+
+	for (char c : s) {
+		rows[curRow] += c;
+		if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
+		curRow += goingDown ? 1 : -1;
+	}
+
+	string ret;
+	for (string row : rows) ret += row;
+	return ret;
 }

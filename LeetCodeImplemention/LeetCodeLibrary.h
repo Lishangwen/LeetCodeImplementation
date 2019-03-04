@@ -32,5 +32,7 @@ public:
 
 	// 5.Longest Palindromic Substring
 	string longestPalindrome(string s);
-};
 
+	// 6. ZigZag Conversion
+	string convert(string s, int numRows);
+};

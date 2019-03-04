@@ -7,3 +7,4 @@ void TwoSumTest(LeetCodeLibrary);
 void AddTwoNumbersTest(LeetCodeLibrary);
 void findMedianSortedArraysTest(LeetCodeLibrary);
 void longestPalindromeTest(LeetCodeLibrary);
+void ConvertTest(LeetCodeLibrary);
