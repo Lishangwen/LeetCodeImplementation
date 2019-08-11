@@ -3,9 +3,13 @@
 #include "unordered_map"
 #include <math.h>
 #include <algorithm>
+#include "string"
 using std::vector;
 using std::unordered_map;
 using std::string;
+using std::to_string;
+using std::stoi;
+using std::stol;
 struct ListNode {
 	int val;
 	ListNode *next;
@@ -35,4 +39,7 @@ public:
 
 	// 6. ZigZag Conversion
 	string convert(string s, int numRows);
+
+	// 7. Reverse Integer
+	int reverse(int x);
 };

@@ -167,3 +167,27 @@ string LeetCodeLibrary::convert(string s, int numRows)
 	for (string row : rows) ret += row;
 	return ret;
 }
+
+int LeetCodeLibrary::reverse(int x)
+{
+	if (x == 0) return 0;
+	string numStr = to_string(x);
+	string resultStr;
+	bool zeroProcess = (numStr[numStr.size() - 1] == '0');
+	for (int i= numStr.size()-1; i >= 0;i--)
+	{
+		zeroProcess = zeroProcess && numStr[i] == '0';
+		if (!zeroProcess&&numStr[i] != '-') resultStr += numStr[i];
+	}
+	if (x < 0) resultStr = '-' + resultStr;
+	try
+	{
+		int result = stoi(resultStr);
+		return result;
+	}
+	catch (exception  err)
+	{
+		return 0;
+	}
+	
+}
