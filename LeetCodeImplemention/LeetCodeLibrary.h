@@ -42,4 +42,7 @@ public:
 
 	// 7. Reverse Integer
 	int reverse(int x);
+
+	// 8. 8. String to Integer (atoi)
+	int myAtoi(string str);
 };

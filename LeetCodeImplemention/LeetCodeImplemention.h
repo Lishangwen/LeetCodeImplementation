@@ -9,3 +9,4 @@ void findMedianSortedArraysTest(LeetCodeLibrary);
 void longestPalindromeTest(LeetCodeLibrary);
 void ConvertTest(LeetCodeLibrary);
 void ReverseTest(LeetCodeLibrary);
+void AtoiTest(LeetCodeLibrary);

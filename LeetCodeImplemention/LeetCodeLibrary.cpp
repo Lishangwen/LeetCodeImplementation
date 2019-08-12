@@ -191,3 +191,117 @@ int LeetCodeLibrary::reverse(int x)
 	}
 	
 }
+
+int LeetCodeLibrary::myAtoi(string str)
+{
+	if (str.empty()) return 0;
+	bool begainSearch = true;
+	int result = 0;
+	bool isMinus = false;
+	bool isFirst = true;
+	bool hasPoint = false;
+	bool hasAdded = false;
+	int a = 3.6;
+	for (string::iterator c=str.begin();c!=str.end();)
+	{
+		int charVal = int(*c)-48;
+		if (isFirst)
+		{
+			if (*c != ' ' && *c != '-'&&*c != '+'&&(charVal < 0 || charVal>9)) return 0;
+			if (*c == '+'&&(c+1)!=str.end())
+			{
+				if (*(c + 1) == ' ')
+					return 0;
+				isMinus = false;
+				c++;
+				charVal = int(*c) - 48;
+			}
+			else if (*c == '-' && (c + 1) != str.end())
+			{
+				if (*(c + 1) == ' ')
+					return 0;
+				isMinus = true;
+				c++;
+				charVal = int(*c) - 48;
+			}
+			else if (charVal <= 9 && charVal >= 0)
+			{
+				isMinus = false;
+			}
+			else
+			{
+				begainSearch = false;
+			}
+			isFirst = false;
+		}
+		if (begainSearch&&((charVal>= 0 && charVal<= 9)||(!hasPoint&&*c=='.')))
+		{
+			if (*c == '.')
+				hasPoint = true;
+			if (!hasPoint)
+			{
+				hasAdded = true;
+				if (!isMinus && !(result > INT_MAX / 10 || (result == INT_MAX / 10 && charVal > 7)))
+				{
+					result = result * 10 + charVal;
+				}
+				else if (isMinus && !(result < INT_MIN / 10 || (result == INT_MIN / 10 && charVal*-1 < -8)))
+				{
+					result = result * 10 - charVal;
+				}
+				else
+				{
+					return (isMinus) ? INT_MIN : INT_MAX;
+				}
+			}
+			
+		}
+		else if(*c!=' ')
+		{
+			begainSearch = false;
+			if (hasAdded) return result;
+		}
+		
+		if (*c == ' ')
+		{
+			if (hasAdded)
+			{
+				return result;
+			}
+			else if((c + 1) != str.end())
+			{
+				begainSearch = true;
+				hasPoint = false;
+				int tempVal = int(*(c+1)) - 48;
+				if (*(c+1) == '+' && (c + 2) != str.end())
+				{
+					if (*(c + 2) == ' ')
+						return 0;
+					isMinus = false;
+					c++;
+				}
+				else if (*(c + 1) == '-' && (c + 2) != str.end())
+				{
+					if (*(c + 2) == ' ')
+						return 0;
+					isMinus = true;
+					c++;
+				}
+				else if (tempVal <= 9 && tempVal >= 0)
+				{
+					isMinus = false;
+				}
+				else if(*(c+1)!=' ')
+				{
+					return 0;
+				}
+				else
+				{
+					begainSearch = false;
+				}
+			}
+		}
+		c++;
+	}
+	return result;
+}
