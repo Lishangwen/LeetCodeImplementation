@@ -308,34 +308,31 @@ int LeetCodeLibrary::myAtoi(string str)
 
 vector<vector<int>> LeetCodeLibrary::threeSum(vector<int>& nums)
 {
-	//sort(nums.begin(), nums.end());
-	bool containSubResult = false;
 	vector<vector<int>> result;
+	if (nums.size() < 3) return result;
+	sort(nums.begin(), nums.end());
 	for (int i = 0; i < nums.size()-2; i++)
 	{
-		for (int j = i + 1; j < nums.size() - 1; j++)
+		if (nums[i] > 0) break;
+		if(i>0&&nums[i]==nums[i-1]) continue;
+		int tarNum = 0 - nums[i];
+		for (int j = i + 1, k = nums.size() - 1; j < k;)
 		{
-			for (int k = j + 1; k < nums.size(); k++)
+			if (nums[j] + nums[k] == tarNum)
 			{
-				if (nums[i] + nums[k] + nums[j] == 0)
-				{
-					containSubResult = false;
-					for (int m = 0; m < result.size(); m++)
-					{
-						if ((result[m][0] == nums[i] && result[m][1] == nums[j] && result[m][2] == nums[k])||
-							(result[m][0] == nums[i] && result[m][2] == nums[j] && result[m][1] == nums[k]) ||
-							(result[m][1] == nums[i] && result[m][0] == nums[j] && result[m][2] == nums[k]) ||
-							(result[m][1] == nums[i] && result[m][2] == nums[j] && result[m][0] == nums[k]) ||
-							(result[m][2] == nums[i] && result[m][1] == nums[j] && result[m][0] == nums[k])||
-							(result[m][2] == nums[i] && result[m][0] == nums[j] && result[m][1] == nums[k]))
-						{
-							containSubResult = true;
-							break;
-						}
-					}
-					if(!containSubResult)
-						result.push_back({ nums[i],nums[j],nums[k]});
-				}
+				result.push_back({ nums[i] ,nums[j],nums[k]});
+				while (j < k && nums[j+1] == nums[j]) ++j;
+				while (j < k && nums[k - 1] == nums[k]) --k;
+				++j;
+				--k;
+			}
+			else if (nums[j] + nums[k] < tarNum)
+			{
+				j++;
+			}
+			else if (nums[j] + nums[k] > tarNum)
+			{
+				k--;
 			}
 		}
 	}
