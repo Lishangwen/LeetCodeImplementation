@@ -10,3 +10,4 @@ void longestPalindromeTest(LeetCodeLibrary);
 void ConvertTest(LeetCodeLibrary);
 void ReverseTest(LeetCodeLibrary);
 void AtoiTest(LeetCodeLibrary);
+void ThreeSumTest(LeetCodeLibrary);

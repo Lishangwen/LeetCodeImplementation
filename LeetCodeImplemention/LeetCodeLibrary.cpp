@@ -305,3 +305,39 @@ int LeetCodeLibrary::myAtoi(string str)
 	}
 	return result;
 }
+
+vector<vector<int>> LeetCodeLibrary::threeSum(vector<int>& nums)
+{
+	//sort(nums.begin(), nums.end());
+	bool containSubResult = false;
+	vector<vector<int>> result;
+	for (int i = 0; i < nums.size()-2; i++)
+	{
+		for (int j = i + 1; j < nums.size() - 1; j++)
+		{
+			for (int k = j + 1; k < nums.size(); k++)
+			{
+				if (nums[i] + nums[k] + nums[j] == 0)
+				{
+					containSubResult = false;
+					for (int m = 0; m < result.size(); m++)
+					{
+						if ((result[m][0] == nums[i] && result[m][1] == nums[j] && result[m][2] == nums[k])||
+							(result[m][0] == nums[i] && result[m][2] == nums[j] && result[m][1] == nums[k]) ||
+							(result[m][1] == nums[i] && result[m][0] == nums[j] && result[m][2] == nums[k]) ||
+							(result[m][1] == nums[i] && result[m][2] == nums[j] && result[m][0] == nums[k]) ||
+							(result[m][2] == nums[i] && result[m][1] == nums[j] && result[m][0] == nums[k])||
+							(result[m][2] == nums[i] && result[m][0] == nums[j] && result[m][1] == nums[k]))
+						{
+							containSubResult = true;
+							break;
+						}
+					}
+					if(!containSubResult)
+						result.push_back({ nums[i],nums[j],nums[k]});
+				}
+			}
+		}
+	}
+	return result;
+}
