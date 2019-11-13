@@ -11,3 +11,4 @@ void ConvertTest(LeetCodeLibrary);
 void ReverseTest(LeetCodeLibrary);
 void AtoiTest(LeetCodeLibrary);
 void ThreeSumTest(LeetCodeLibrary);
+void ThreeSumClosestTest(LeetCodeLibrary);

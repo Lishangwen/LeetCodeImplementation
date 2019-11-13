@@ -338,3 +338,45 @@ vector<vector<int>> LeetCodeLibrary::threeSum(vector<int>& nums)
 	}
 	return result;
 }
+
+int LeetCodeLibrary::threeSumClosest(vector<int>& nums, int target)
+{
+	int result = 0;
+	if (nums.size() < 3)  return result;
+	sort(nums.begin(), nums.end());
+	result = nums[0] + nums[1] + nums[2];
+	if (result == target) return target;
+	int tempSum = 0;
+	for (int i = 0; i < nums.size()-2; i++)
+	{
+		for (int j = i + 1, k = nums.size() - 1; j < k;)
+		{
+			tempSum = nums[i] + nums[j] + nums[k];
+			if (tempSum == target) return target;
+			if (abs(target - result) > abs(target - tempSum))
+			{
+				result = tempSum;
+				if (target - tempSum > 0)
+				{
+					j++;
+				}
+				else
+				{
+					k--;
+				}
+			}
+			else if (abs(target - result) <= abs(target - tempSum))
+			{
+				if (target - tempSum > 0)
+				{
+					j++;
+				}
+				else
+				{
+					k--;
+				}
+			}
+		}
+	}
+	return result;
+}
