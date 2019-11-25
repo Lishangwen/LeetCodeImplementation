@@ -380,3 +380,28 @@ int LeetCodeLibrary::threeSumClosest(vector<int>& nums, int target)
 	}
 	return result;
 }
+
+vector<string> LeetCodeLibrary::letterCombinations(string digits)
+{
+	if (digits.length() == 0)
+		return outPut;
+	backtrack("", digits);
+	return outPut;
+}
+
+void LeetCodeLibrary::backtrack(string combination, string nextDigit)
+{
+	if (nextDigit.length()==0)
+	{
+		outPut.push_back(combination);
+	}
+	else
+	{
+		string oneDigit = nextDigit.substr(0, 1);
+		string letters = digitToLetter[oneDigit];
+		for (int i = 0; i < letters.length(); i++)
+		{
+			backtrack(combination + letters[i], nextDigit.substr(1));
+		}
+	}
+}

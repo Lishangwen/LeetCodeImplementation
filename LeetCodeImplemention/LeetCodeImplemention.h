@@ -12,3 +12,4 @@ void ReverseTest(LeetCodeLibrary);
 void AtoiTest(LeetCodeLibrary);
 void ThreeSumTest(LeetCodeLibrary);
 void ThreeSumClosestTest(LeetCodeLibrary);
+void LetterCombinationsTest(LeetCodeLibrary);
